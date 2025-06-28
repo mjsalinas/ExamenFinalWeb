@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
-const reviewRoutes = require('./routes/reviewRoutes');
+require('dotenv').config();
 
+const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/reviews', reviewRoutes);
+
+// Rutas
+app.use('/api/reviews', require('./routes/reviewRoutes'));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
-});
+app.listen(PORT, () => 
+  console.log(`Servidor corriendo en puerto ${PORT}`)
+);
