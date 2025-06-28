@@ -1,4 +1,4 @@
-const supabase = require('../supabaseClient');
+const supabase = require('./services/supabaseClient');
 
 // GET - obtener todas las reseñas
 exports.getAllReviews = async (req, res) => {
@@ -7,6 +7,8 @@ exports.getAllReviews = async (req, res) => {
     .select('*')
     .order('created_at', { ascending: false });
 
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data);
 };
 
 // POST - crear nueva reseña
@@ -18,6 +20,8 @@ exports.createReview = async (req, res) => {
     .insert([{ title, review, rating }])
     .select();
 
+  if (error) return res.status(500).json({ error: error.message });
+  res.status(201).json(data[0]);
 };
 
 // DELETE - eliminar reseña por id
@@ -27,6 +31,8 @@ exports.deleteReview = async (req, res) => {
   const { error } = await supabase
     .from('reviews')
     .delete()
+    .eq('id', id);
 
-
+  if (error) return res.status(500).json({ error: error.message });
+  res.status(204).send();
 };
