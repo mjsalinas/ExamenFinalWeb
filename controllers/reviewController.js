@@ -48,5 +48,5 @@ exports.deleteReview = async (req, res) => {
   const { error } = await supabase.from('reviews').delete().eq('id', id)
 
   if (error) return res.status(500).json({ error: error.message })
-  res.status(204).send()
+  res.json({ message: 'ELIMINADO CORRECTAMENTE' })
 }
