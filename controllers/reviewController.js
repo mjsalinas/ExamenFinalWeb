@@ -1,4 +1,4 @@
-const supabase = require('./services/supabaseClient');
+const supabase = require('../services/supabaseClient');
 
 // GET - obtener todas las reseñas
 exports.getAllReviews = async (req, res) => {
