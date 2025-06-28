@@ -1,13 +1,13 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const reviewRoutes = require('./routes/reviewRoutes');
+const express = require('express')
+const cors = require('cors')
+const app = express()
+const reviewRoutes = require('./routes/reviewRoutes')
 
-app.use(cors());
-app.use(express.json());
-app.use('/reviews', reviewRoutes);
+app.use(cors())
+app.use(express.json())
+app.use('/reviews', reviewRoutes)
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
-});
+  console.log(`Servidor escuchando en el puerto ${PORT}`)
+})
